@@ -1,11 +1,12 @@
 #!/usr/bin/python
 
-import simpleaudio
-import paho.mqtt.client as mqtt
+# import simpleaudio
 import os
-from dotenv import load_dotenv
-import requests
 from time import sleep
+
+import paho.mqtt.client as mqtt
+import requests
+from dotenv import load_dotenv
 from rgbxy import Converter
 
 load_dotenv()
@@ -22,12 +23,13 @@ def on_connect(client, data, flags, rc):
 
 def on_message(client, data, msg):
     print("Praise received!")
-    wav_obj = simpleaudio.WaveObject.from_wave_file("osaka-loopline.wav")
-    play_obj = wav_obj.play()
+    # wav_obj = simpleaudio.WaveObject.from_wave_file("osaka-loopline.wav")
+    # play_obj = wav_obj.play()
     blink_hue()
     blink_hue()
     blink_hue()
-    play_obj.wait_done()
+    # play_obj.wait_done()
+
 
 def blink_hue():
     red_xy = converter.hex_to_xy("ff0000")
@@ -60,4 +62,3 @@ client.connect("mqtt.beebotte.com", 1883, 60)
 print("Connected to beebotte!")
 
 client.loop_forever()
-
